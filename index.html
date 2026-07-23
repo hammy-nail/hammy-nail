@@ -38,8 +38,6 @@ body { font-family:'Zen Maru Gothic','Nunito',sans-serif; background:var(--navy)
 .hero-star:nth-child(14){top:70%;left:30%;font-size:7px;animation-delay:0.25s;}
 .hero-star:nth-child(15){top:65%;left:70%;font-size:6px;animation-delay:0.75s;}
 .hero > *:not(.hero-star) { position:relative; z-index:1; }
-.order-guide-label { display:inline-flex; align-items:center; gap:10px; color:var(--mint); font-family:'Playfair Display',serif; font-size:17px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-top:18px; }
-.order-guide-label::before,.order-guide-label::after { content:'✦'; color:var(--gold); font-size:12px; }
 .welcome-deco-line { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
 .welcome-deco-line::before,.welcome-deco-line::after { content:''; flex:1; height:1.5px; background:#7dd8b8; opacity:0.8; }
 .welcome-section { background:var(--navy); padding:0 20px 28px; margin-top:-16px; position:relative; overflow:hidden; }
@@ -55,7 +53,7 @@ body { font-family:'Zen Maru Gothic','Nunito',sans-serif; background:var(--navy)
 .welcome-star:nth-child(9){top:75%;right:3%;font-size:4px;animation-delay:0.3s;}
 .welcome-star:nth-child(10){top:90%;right:1%;font-size:5px;animation-delay:0.6s;}
 .welcome-card { background:white; border-radius:20px; padding:28px 24px 24px; text-align:center; max-width:600px; margin:0 auto; box-shadow:0 8px 32px rgba(0,0,0,0.25); border:2px solid rgba(248,184,120,0.3); position:relative; z-index:1; }
-.deco-diamond{font-size:12px;color:#e8c84a;opacity:1;}
+.deco-diamond{font-size:12px;color:#e8c84a;}
 .tent-icon{font-size:24px;}
 .welcome-title { font-size:18px; font-weight:700; color:var(--pink); margin-bottom:16px; }
 .welcome-body { font-size:13px; line-height:2; color:#4a3a50; margin-bottom:16px; letter-spacing:-0.2px; }
@@ -83,7 +81,7 @@ body { font-family:'Zen Maru Gothic','Nunito',sans-serif; background:var(--navy)
 .sect-btn.active .sect-btn-arrow{color:rgba(255,255,255,0.5);}
 .content-area { background:var(--stripe-pink); padding:28px 16px 40px; margin-top:-1px; border-bottom:4px solid #f5f0a0; }
 .section-view{display:none;} .section-view.active{display:block;}
-.book-card { background:var(--cream); border-radius:20px; overflow:hidden; box-shadow:none; max-width:600px; margin:0 auto; border:none; outline:none; }
+.book-card { background:var(--cream); border-radius:20px; overflow:hidden; max-width:600px; margin:0 auto; }
 .book-topbar { background:var(--pink); padding:13px 20px; display:flex; align-items:center; gap:10px; }
 #sect0 .book-topbar{background:#fdc080;} #sect1 .book-topbar{background:#f5f0a0;}
 #sect2 .book-topbar{background:#f4a8bc;} #sect3 .book-topbar{background:#b8dff5;}
@@ -91,7 +89,6 @@ body { font-family:'Zen Maru Gothic','Nunito',sans-serif; background:var(--navy)
 .book-topbar-title { font-family:'Nunito',sans-serif; font-size:17px; font-weight:900; color:#5a3a2a; letter-spacing:0.3px; }
 
 .book-stage { min-height:260px; background:linear-gradient(160deg,#fdf4f8 0%,#f4edfb 100%); display:flex; align-items:center; justify-content:center; padding:20px 44px; position:relative; }
-.book-stage::before { display:none; }
 .slide{display:none;width:100%;} .slide.active{display:flex;flex-direction:column;align-items:center;}
 .slide img{max-width:100%;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.12);}
 .slide-nav-left, .slide-nav-right {
@@ -235,6 +232,11 @@ body { font-family:'Zen Maru Gothic','Nunito',sans-serif; background:var(--navy)
       <button class="sect-btn" onclick="showSection(3)" id="stab3">
         <div class="sect-btn-icon">🍿</div>
         <div class="sect-btn-text"><span class="sect-btn-title">発送・お支払方法</span><span class="sect-btn-sub">配送・お支払い</span></div>
+        <span class="sect-btn-arrow">›</span>
+      </button>
+      <button class="sect-btn" style="border-color:#f4a8bc;" onclick="showSection(3);setTimeout(()=&gt;document.getElementById('paypay-notice').scrollIntoView({behavior:'smooth',block:'start'}),450)">
+        <div class="sect-btn-icon" style="background:#fde4ec;">⚠️</div>
+        <div class="sect-btn-text"><span class="sect-btn-title">PayPayでお支払いの際の注意点</span></div>
         <span class="sect-btn-arrow">›</span>
       </button>
       <a class="faq-link-btn" href="javascript:void(0)" onclick="showFaq()" style="background:#d4b8e8; border:3px solid white; width:280px;">
@@ -382,6 +384,9 @@ body { font-family:'Zen Maru Gothic','Nunito',sans-serif; background:var(--navy)
           </div>
         </div>
       </div>
+    </div>
+    <div id="paypay-notice" style="margin-top:16px;max-width:600px;margin-left:auto;margin-right:auto;text-align:center;">
+      <img src="paypay.jpg" style="max-width:100%;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.12);">
     </div>
     <button class="back-to-top" onclick="document.querySelector('.stripe-section').scrollIntoView({behavior:'smooth',block:'start'})">▲ TOPに戻る</button>
 
