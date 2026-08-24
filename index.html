@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hammy Nail</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Pacifico&family=Zen+Maru+Gothic:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --navy:#1a2a5e;
+  --pink:#e87878;
+  --gold:#e8c84a; --mint:#7dd8b8; --cream:#fff8f0; --stripe-pink:#f4c0b8;
+}
+body { font-family:'Zen Maru Gothic','Nunito',sans-serif; background:var(--navy); min-height:100vh; overflow-x:hidden; touch-action:manipulation; }
+.insta-top { background:var(--pink); color:white; text-align:center; padding:9px 16px; font-size:13px; font-weight:700; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:7px; text-decoration:none; }
+.insta-top:hover { background:#d05858; }
+.insta-top svg { width:16px; height:16px; fill:none; stroke:white; stroke-width:2; flex-shrink:0; }
+.garland-bar { background:var(--navy); padding:0; overflow:hidden; border-top:2px solid #f5f0a0; }
+.garland-row { display:flex; white-space:nowrap; align-items:flex-start; width:100%; overflow:hidden; }
+.gf { display:inline-block; width:28px; height:32px; margin:0; clip-path:polygon(0 0,100% 0,50% 100%); flex-shrink:0; flex-grow:1; }
+.gf.g1{background:#f4a0b8;}.gf.g2{background:#b8d8f0;}.gf.g3{background:#a8e0c0;}.gf.g4{background:#f8d090;}
+.hero { background:var(--navy); text-align:center; padding:36px 20px 28px; position:relative; overflow:hidden; }
+.hero-star { position:absolute; color:#c8a840; animation:twinkle 1.2s infinite alternate; pointer-events:none; z-index:0; }
+.hero-star:nth-child(1){top:8%;left:4%;font-size:7px;animation-delay:0s;}
+.hero-star:nth-child(2){top:5%;left:25%;font-size:6px;animation-delay:0.3s;}
+.hero-star:nth-child(3){top:12%;left:50%;font-size:8px;animation-delay:0.6s;}
+.hero-star:nth-child(4){top:6%;left:74%;font-size:7px;animation-delay:0.1s;}
+.hero-star:nth-child(5){top:10%;left:92%;font-size:7px;animation-delay:0.4s;}
+.hero-star:nth-child(6){top:55%;left:2%;font-size:7px;animation-delay:0.2s;}
+.hero-star:nth-child(7){top:60%;left:94%;font-size:8px;animation-delay:0.5s;}
+.hero-star:nth-child(8){top:82%;left:8%;font-size:6px;animation-delay:0.1s;}
+.hero-star:nth-child(9){top:85%;left:45%;font-size:7px;animation-delay:0.35s;}
+.hero-star:nth-child(10){top:80%;left:85%;font-size:7px;animation-delay:0.25s;}
+.hero-star:nth-child(11){top:30%;left:10%;font-size:6px;animation-delay:0.45s;}
+.hero-star:nth-child(12){top:25%;left:88%;font-size:7px;animation-delay:0.1s;}
+.hero-star:nth-child(13){top:45%;left:55%;font-size:6px;animation-delay:0.65s;}
+.hero-star:nth-child(14){top:70%;left:30%;font-size:7px;animation-delay:0.25s;}
+.hero-star:nth-child(15){top:65%;left:70%;font-size:6px;animation-delay:0.75s;}
+.hero > *:not(.hero-star) { position:relative; z-index:1; }
+.welcome-deco-line { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.welcome-deco-line::before,.welcome-deco-line::after { content:''; flex:1; height:1.5px; background:#7dd8b8; opacity:0.8; }
+.welcome-section { background:var(--navy); padding:0 20px 28px; margin-top:-16px; position:relative; overflow:hidden; }
+.welcome-star { position:absolute; color:#c8a840; animation:twinkle 1.2s infinite alternate; pointer-events:none; }
+.welcome-star:nth-child(1){top:10%;left:2%;font-size:5px;animation-delay:0s;}
+.welcome-star:nth-child(2){top:25%;left:5%;font-size:4px;animation-delay:0.3s;}
+.welcome-star:nth-child(3){top:50%;left:1%;font-size:6px;animation-delay:0.6s;}
+.welcome-star:nth-child(4){top:70%;left:4%;font-size:4px;animation-delay:0.2s;}
+.welcome-star:nth-child(5){top:85%;left:2%;font-size:5px;animation-delay:0.5s;}
+.welcome-star:nth-child(6){top:10%;right:2%;font-size:4px;animation-delay:0.4s;}
+.welcome-star:nth-child(7){top:30%;right:4%;font-size:5px;animation-delay:0.1s;}
+.welcome-star:nth-child(8){top:55%;right:2%;font-size:6px;animation-delay:0.7s;}
+.welcome-star:nth-child(9){top:75%;right:3%;font-size:4px;animation-delay:0.3s;}
+.welcome-star:nth-child(10){top:90%;right:1%;font-size:5px;animation-delay:0.6s;}
+.welcome-card { background:white; border-radius:20px; padding:28px 24px 24px; text-align:center; max-width:600px; margin:0 auto; box-shadow:0 8px 32px rgba(0,0,0,0.25); border:2px solid rgba(248,184,120,0.3); position:relative; z-index:1; }
+.deco-diamond{font-size:12px;color:#e8c84a;}
+.tent-icon{font-size:24px;}
+.welcome-title { font-size:18px; font-weight:700; color:var(--pink); margin-bottom:16px; }
+.welcome-body { font-size:13px; line-height:2; color:#4a3a50; margin-bottom:16px; letter-spacing:-0.2px; }
+.welcome-cta { font-size:13.5px; font-weight:700; color:var(--pink); }
+.welcome-deco-bottom { display:flex; align-items:center; gap:10px; margin-top:18px; justify-content:center; }
+.welcome-deco-bottom::before,.welcome-deco-bottom::after { content:''; flex:1; height:1.5px; background:#7dd8b8; opacity:0.8; }
+.stripe-section { background:var(--navy); padding:0 0 0; }
+.stripe-inner { background:repeating-linear-gradient(90deg,var(--stripe-pink) 0px,var(--stripe-pink) 15px,white 15px,white 30px); padding:20px 16px 24px; border-top:4px solid #f5f0a0; }
+.section-tabs { display:flex; flex-direction:column; gap:10px; max-width:600px; margin:0 auto; }
+.sect-btn { background:white; border:none; border-top:3px solid; border-bottom:3px solid; border-radius:0; padding:14px 20px; display:flex; align-items:center; gap:12px; cursor:pointer; box-shadow:0 5px 0 rgba(0,0,0,0.12),0 6px 12px rgba(0,0,0,0.1); font-family:'Zen Maru Gothic',sans-serif; text-align:left; width:100%; transform:translateY(0); transition:transform 0.1s,box-shadow 0.1s; }
+.sect-btn:active { transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,0.12),0 3px 6px rgba(0,0,0,0.1); }
+.sect-btn.active { background:#c9a8e0; box-shadow:0 5px 0 rgba(150,100,200,0.5),0 6px 12px rgba(160,110,210,0.25); }
+.sect-btn-icon { width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:26px; flex-shrink:0; }
+.sect-btn:nth-child(1) .sect-btn-icon{background:#feebd4;} .sect-btn:nth-child(2) .sect-btn-icon{background:#fdf8c0;}
+.sect-btn:nth-child(3) .sect-btn-icon{background:#fde4ec;} .sect-btn:nth-child(4) .sect-btn-icon{background:#d8eef8;}
+.sect-btn:nth-child(1){border-color:#f9a050;} .sect-btn:nth-child(2){border-color:#f5f0a0;}
+.sect-btn:nth-child(3){border-color:#f4a8bc;} .sect-btn:nth-child(4){border-color:#b8dff5;}
+.sect-btn.active .sect-btn-icon{background:rgba(255,255,255,0.5);}
+.sect-btn-text{flex:1;}
+.sect-btn-title{font-size:15px;font-weight:700;color:#4a3a2a;display:block;}
+.sect-btn.active .sect-btn-title{color:white;}
+.sect-btn-sub{font-size:11px;color:rgba(74,58,42,0.6);font-weight:500;display:block;margin-top:2px;}
+.sect-btn.active .sect-btn-sub{color:rgba(255,255,255,0.75);}
+.sect-btn-arrow{font-size:16px;color:#ccc;font-weight:700;}
+.sect-btn.active .sect-btn-arrow{color:rgba(255,255,255,0.5);}
+.content-area { background:var(--stripe-pink); padding:28px 16px 40px; margin-top:-1px; border-bottom:4px solid #f5f0a0; }
+.section-view{display:none;} .section-view.active{display:block;}
+.book-card { background:var(--cream); border-radius:20px; overflow:hidden; max-width:600px; margin:0 auto; }
+.book-topbar { background:var(--pink); padding:13px 20px; display:flex; align-items:center; gap:10px; }
+#sect0 .book-topbar{background:#fdc080;} #sect1 .book-topbar{background:#f5f0a0;}
+#sect2 .book-topbar{background:#f4a8bc;} #sect3 .book-topbar{background:#b8dff5;}
+.book-topbar-icon{font-size:20px;}
+.book-topbar-title { font-family:'Nunito',sans-serif; font-size:17px; font-weight:900; color:#5a3a2a; letter-spacing:0.3px; }
+
+.book-stage { min-height:260px; background:linear-gradient(160deg,#fdf4f8 0%,#f4edfb 100%); display:flex; align-items:center; justify-content:center; padding:20px 44px; position:relative; }
+.slide{display:none;width:100%;} .slide.active{display:flex;flex-direction:column;align-items:center;}
+.slide img{max-width:100%;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.12);}
+.slide-nav-left, .slide-nav-right {
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:32px; height:32px; border-radius:50%;
+  background:rgba(255,255,255,0.8); border:none; cursor:pointer;
+  font-size:14px; display:flex; align-items:center; justify-content:center;
+  z-index:2; color:#4a3a2a; box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+.slide-nav-left { left:8px; }
+.slide-nav-right { right:8px; }
+.slide-nav-left:disabled, .slide-nav-right:disabled { opacity:0.25; cursor:default; }
+.book-footer { background:#f4edfb; padding:2px 20px 11px; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.slide-counter{font-size:11px;font-weight:800;color:rgba(100,80,120,0.75);letter-spacing:1.5px;font-family:'Nunito',sans-serif;min-width:40px;}
+.slide-dots{display:flex;gap:6px;flex-wrap:wrap;}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(180,150,200,0.35);cursor:pointer;}
+.dot.active{background:var(--gold);box-shadow:0 0 6px rgba(232,200,74,0.5);}
+.nav-btns{display:flex;gap:12px;}
+.nav-btn { width:44px; height:44px; border-radius:50%; background:rgba(180,150,200,0.2); border:1.5px solid rgba(180,150,200,0.4); color:#6a4a8a; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px; }
+.nav-btn:hover:not(:disabled){background:var(--pink);border-color:var(--pink);color:white;}
+.nav-btn:disabled{opacity:0.25;cursor:default;}
+.back-to-top { display:block; text-align:center; margin:16px auto; padding:12px 32px; background:white; border:2px solid var(--stripe-pink); border-radius:50px; color:#9a8a7a; font-size:13px; font-weight:700; cursor:pointer; font-family:'Zen Maru Gothic',sans-serif; width:fit-content; }
+.back-to-top:hover { background:var(--stripe-pink); color:white; }
+
+.insta-bottom { background:var(--navy); padding:24px 24px 36px; text-align:center; position:relative; overflow:hidden; }
+.insta-star{position:absolute;color:#c8a840;animation:twinkle 1.2s infinite alternate;}
+.insta-star:nth-child(1){top:10%;left:5%;font-size:7px;animation-delay:0s;}
+.insta-star:nth-child(2){top:7%;left:28%;font-size:8px;animation-delay:0.25s;}
+.insta-star:nth-child(3){top:22%;left:52%;font-size:6px;animation-delay:0.5s;}
+.insta-star:nth-child(4){top:8%;left:72%;font-size:8px;animation-delay:0.15s;}
+.insta-star:nth-child(5){top:12%;left:90%;font-size:7px;animation-delay:0.4s;}
+.insta-star:nth-child(6){top:58%;left:3%;font-size:8px;animation-delay:0.2s;}
+.insta-star:nth-child(7){top:62%;left:92%;font-size:7px;animation-delay:0.55s;}
+.insta-star:nth-child(8){top:82%;left:10%;font-size:8px;animation-delay:0.1s;}
+.insta-star:nth-child(9){top:85%;left:48%;font-size:7px;animation-delay:0.35s;}
+.insta-star:nth-child(10){top:80%;left:82%;font-size:8px;animation-delay:0.3s;}
+.insta-star:nth-child(11){top:35%;left:20%;font-size:7px;animation-delay:0.45s;}
+.insta-star:nth-child(12){top:40%;left:75%;font-size:6px;animation-delay:0.65s;}
+.insta-star:nth-child(13){top:55%;left:50%;font-size:7px;animation-delay:0.2s;}
+@keyframes twinkle{from{opacity:0.4;transform:scale(0.85);}to{opacity:1.0;transform:scale(1.15);}}
+.insta-bottom-text { color:white; font-family:'Zen Maru Gothic',sans-serif; font-size:13px; font-weight:700; line-height:1.9; margin-bottom:8px; position:relative; z-index:1; }
+.insta-dm-btn { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); color:white; font-family:'Zen Maru Gothic',sans-serif; font-size:18px; font-weight:700; padding:14px 20px; border-radius:50px; text-decoration:none; position:relative; z-index:1; letter-spacing:1px; }
+.insta-dm-btn svg{width:24px;height:24px;fill:none;stroke:white;stroke-width:2;flex-shrink:0;}
+
+.faq-link-btn { display:flex; align-items:center; gap:10px; background:white; border:none; border-radius:50px; padding:10px 16px; max-width:280px; margin:10px auto 0; cursor:pointer; text-decoration:none; box-shadow:0 5px 0 rgba(0,0,0,0.08); }
+.faq-link-btn:hover { background:#f5eaff; }
+.faq-link-icon { width:28px; height:28px; border-radius:50%; background:#ead5f5; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.faq-link-text { flex:1; }
+.faq-link-title { font-size:13px; font-weight:700; color:#4a3a2a; display:block; }
+.faq-link-sub { font-size:10px; color:rgba(74,58,42,0.6); font-weight:500; display:block; margin-top:1px; }
+.faq-link-arrow { font-size:16px; color:#ccc; font-weight:700; }
+
+.faq-section-view { display:none; }
+.faq-section-view.active { display:block; }
+.faq-box { background:var(--cream); border-radius:20px; overflow:hidden; max-width:600px; margin:0 auto; box-shadow:0 5px 0 rgba(0,0,0,0.12),0 6px 12px rgba(0,0,0,0.1); }
+.faq-box-topbar { background:#dd99dd; padding:13px 20px; display:flex; align-items:center; gap:10px; }
+.faq-box-body { padding:16px; }
+.faq-qa { margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(180,150,220,0.5); }
+.faq-qa:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+.faq-qa-q { font-size:13px; font-weight:700; color:#4a3a2a; margin-bottom:8px; display:flex; align-items:flex-start; gap:8px; }
+.faq-qa-q::before { content:"Q."; color:#9a6cc0; flex-shrink:0; }
+.faq-qa-a { font-size:13px; line-height:1.9; color:#6a5a5a; display:flex; align-items:flex-start; gap:8px; }
+.faq-qa-a::before { content:"A."; color:#e87878; flex-shrink:0; font-weight:700; }
+
+.request-box { background:var(--cream); border-radius:20px; overflow:hidden; max-width:600px; margin:10px auto 0; box-shadow:0 5px 0 rgba(0,0,0,0.12),0 6px 12px rgba(0,0,0,0.1); border:3px solid white; }
+.request-topbar { background:#99bbff; padding:13px 20px; display:flex; align-items:center; gap:10px; }
+.request-body { padding:16px; }
+.request-section { margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(244,192,184,0.5); }
+.request-section:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+.request-section-title { font-size:13px; font-weight:700; color:#e87878; margin-bottom:8px; }
+.request-section-text { font-size:13px; line-height:1.9; color:#6a5a5a; }
+
+.request-section-view { display:none; }
+.request-section-view.active { display:block; }
+</style>
+</head>
+<body>
+
+<a class="insta-top" href="https://www.instagram.com/hammy_nail.hami?igsh=YXMyZng1dXU4enJ6&utm_source=qr" target="_blank">
+  <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+  Instagramにて作品公開中 ⭐
+</a>
+
+<div class="garland-bar"><div class="garland-row" id="gr1"></div></div>
+
+<div class="hero">
+  <span class="hero-star">★</span><span class="hero-star">★</span><span class="hero-star">★</span>
+  <span class="hero-star">★</span><span class="hero-star">★</span><span class="hero-star">★</span>
+  <span class="hero-star">★</span><span class="hero-star">★</span><span class="hero-star">★</span>
+  <span class="hero-star">★</span><span class="hero-star">★</span><span class="hero-star">★</span>
+  <span class="hero-star">★</span><span class="hero-star">★</span><span class="hero-star">★</span>
+  <img src="rogotouka.png" style="max-width:400px;width:90%;display:block;margin:0 auto;">
+  <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:20px; margin-bottom:20px; position:relative; z-index:2;">
+    <div style="display:flex;align-items:center;flex-shrink:0;"><div style="width:10px;height:10px;border-radius:50%;background:#a8e8d0;"></div><div style="width:8px;height:8px;background:#a8e8d0;transform:rotate(45deg);margin-left:2px;"></div></div>
+    <div style="position:relative;background:#a8e8d0;color:var(--navy);font-family:'Playfair Display',serif;font-size:17px;font-weight:900;letter-spacing:3px;text-transform:uppercase;padding:6px 28px;clip-path:polygon(12px 0%,calc(100% - 12px) 0%,100% 50%,calc(100% - 12px) 100%,12px 100%,0% 50%);display:inline-flex;align-items:center;gap:10px;">
+      <span style="color:var(--gold);font-size:12px;text-shadow:none;">✦✦✦</span>Order Guide<span style="color:var(--gold);font-size:12px;text-shadow:none;">✦✦✦</span>
+    </div>
+    <div style="display:flex;align-items:center;flex-shrink:0;"><div style="width:8px;height:8px;background:#a8e8d0;transform:rotate(45deg);margin-right:2px;"></div><div style="width:10px;height:10px;border-radius:50%;background:#a8e8d0;"></div></div>
+  </div>
+</div>
+
+<div class="welcome-section">
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <span class="welcome-star">★</span>
+  <div class="welcome-card">
+    <div class="welcome-deco-line"><span class="deco-diamond">✦✧</span><span class="tent-icon">🎪</span><span class="deco-diamond">✧✦</span></div>
+    <div class="welcome-title">ようこそ、<span style="font-family:'Pacifico',cursive;font-size:22px;">Hammy Nail</span> へ！</div>
+    <div class="welcome-body">ネイルチップ・3Dパーツ・プレインシートなど<br>オーダーメイドのアイテムを販売しております🌟<br>オーダーにあたり、ご利用上の必要事項となります。</div>
+    <div class="welcome-cta">ご購入前に、必ずご一読をお願いいたします！</div>
+    <div class="welcome-deco-bottom"><span class="deco-diamond">✦✧</span><span class="deco-diamond">✧✦</span></div>
+  </div>
+
+</div>
+
+<div class="stripe-section">
+  <div class="stripe-inner">
+    <div class="section-tabs">
+      <button class="sect-btn active" onclick="showSection(0)" id="stab0">
+        <div class="sect-btn-icon">🧸</div>
+        <div class="sect-btn-text"><span class="sect-btn-title">利用規約</span><span class="sect-btn-sub">オーダーの流れ・注意事項・MENU</span></div>
+        <span class="sect-btn-arrow">›</span>
+      </button>
+      <button class="sect-btn" onclick="showSection(1)" id="stab1">
+        <div class="sect-btn-icon">🎟️</div>
+        <div class="sect-btn-text"><span class="sect-btn-title">オーダーシート</span><span class="sect-btn-sub">記入例・オーダーシート</span></div>
+        <span class="sect-btn-arrow">›</span>
+      </button>
+      <button class="sect-btn" onclick="showSection(2)" id="stab2">
+        <div class="sect-btn-icon">🎠</div>
+        <div class="sect-btn-text"><span class="sect-btn-title">チップについて</span><span class="sect-btn-sub">測定チップ・チップの種類・加工オプション</span></div>
+        <span class="sect-btn-arrow">›</span>
+      </button>
+      <button class="sect-btn" onclick="showSection(3)" id="stab3">
+        <div class="sect-btn-icon">🍿</div>
+        <div class="sect-btn-text"><span class="sect-btn-title">発送・お支払方法</span><span class="sect-btn-sub">配送・お支払い</span></div>
+        <span class="sect-btn-arrow">›</span>
+      </button>
+      <button class="sect-btn" style="border-color:#f4a8bc;" onclick="showSection(3);setTimeout(()=&gt;document.getElementById('paypay-notice').scrollIntoView({behavior:'smooth',block:'start'}),450)">
+        <div class="sect-btn-icon" style="background:#fde4ec;">⚠️</div>
+        <div class="sect-btn-text"><span class="sect-btn-title">PayPayでお支払いの際の注意点</span></div>
+        <span class="sect-btn-arrow">›</span>
+      </button>
+      <a class="faq-link-btn" href="javascript:void(0)" onclick="showFaq()" style="background:#dd99dd; border:3px solid white; width:280px;">
+        <div class="faq-link-icon">🌝</div>
+        <div class="faq-link-text">
+          <span class="faq-link-title">よくあるご質問</span>
+          <span class="faq-link-sub">Q&A</span>
+        </div>
+        <span class="faq-link-arrow">›</span>
+      </a>
+      <a class="faq-link-btn" href="javascript:void(0)" onclick="showRequest()" style="background:#99bbff; border:3px solid white; width:280px;">
+        <div class="faq-link-icon" style="background:#ffffcc;">🎈</div>
+        <div class="faq-link-text">
+          <span class="faq-link-title">お願い事項</span>
+          <span class="faq-link-sub">お問合わせ前にご確認ください</span>
+        </div>
+        <span class="faq-link-arrow">›</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="content-area">
+
+  <div class="section-view active" id="sect0">
+    <div class="book-card">
+      <div class="book-topbar"><span class="book-topbar-icon">🧸</span><span class="book-topbar-title">利用規約</span></div>
+      <div class="book-stage">
+        <button class="slide-nav-left" id="pl0" onclick="ms(0,-1)" disabled>◀</button>
+        <button class="slide-nav-right" id="nl0" onclick="ms(0,1)">▶</button>
+        <div style="width:100%">
+          <div class="slide active" id="s0-0"><img src="order1.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s0-1"><img src="order2.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s0-2"><img src="order3.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s0-3"><img src="order4.jpg" style="max-width:100%;border-radius:12px;"></div>
+        </div>
+      </div>
+      <div class="book-footer">
+        <div class="nav-btns"><button class="nav-btn" id="p0" onclick="ms(0,-1)" disabled>◀</button><button class="nav-btn" id="n0" onclick="ms(0,1)">▶</button></div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="slide-counter" id="cnt0">1 / 4</div>
+          <div class="slide-dots" id="dots0">
+            <div class="dot active" onclick="js(0,0)"></div>
+            <div class="dot" onclick="js(0,1)"></div>
+            <div class="dot" onclick="js(0,2)"></div>
+            <div class="dot" onclick="js(0,3)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="back-to-top" onclick="document.querySelector('.stripe-section').scrollIntoView({behavior:'smooth',block:'start'})">▲ TOPに戻る</button>
+
+  </div>
+
+  <div class="section-view" id="sect1">
+    <div class="book-card">
+      <div class="book-topbar"><span class="book-topbar-icon">🎟️</span><span class="book-topbar-title">オーダーシート</span></div>
+      <div id="save-notice" style="text-align:center;padding:8px;font-size:12px;color:#9a8a7a;background:var(--cream);display:none;">保存してご利用ください</div>
+      <div class="book-stage">
+        <button class="slide-nav-left" id="pl1" onclick="ms(1,-1)" disabled>◀</button>
+        <button class="slide-nav-right" id="nl1" onclick="ms(1,1)">▶</button>
+        <div style="width:100%">
+          <div class="slide active" id="s1-0"><img src="si-torei.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s1-1"><img src="10set.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s1-2"><img src="tanpin.jpg" style="max-width:100%;border-radius:12px;"></div>
+        </div>
+      </div>
+      <div class="book-footer">
+        <div class="nav-btns"><button class="nav-btn" id="p1" onclick="ms(1,-1)" disabled>◀</button><button class="nav-btn" id="n1" onclick="ms(1,1)">▶</button></div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="slide-counter" id="cnt1">1 / 3</div>
+          <div class="slide-dots" id="dots1">
+            <div class="dot active" onclick="js(1,0)"></div>
+            <div class="dot" onclick="js(1,1)"></div>
+            <div class="dot" onclick="js(1,2)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="back-to-top" onclick="document.querySelector('.stripe-section').scrollIntoView({behavior:'smooth',block:'start'})">▲ TOPに戻る</button>
+
+  </div>
+
+  <div class="section-view" id="sect2">
+    <div class="book-card">
+      <div class="book-topbar"><span class="book-topbar-icon">🎠</span><span class="book-topbar-title">チップについて</span></div>
+      <div class="book-stage">
+        <button class="slide-nav-left" id="pl2" onclick="ms(2,-1)" disabled>◀</button>
+        <button class="slide-nav-right" id="nl2" onclick="ms(2,1)">▶</button>
+        <div style="width:100%">
+          <div class="slide active" id="s2-0"><img src="chip.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-1"><img src="chip1.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-2"><img src="chip2.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-3"><img src="chip3.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-4"><img src="chip4.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-5"><img src="chip5.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-6"><img src="chip6.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-7"><img src="chip7.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-8"><img src="chip8.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-9"><img src="chip9.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-10"><img src="chip10.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-11"><img src="chip11.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-12"><img src="chip12.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s2-13"><img src="chip13.jpg" style="max-width:100%;border-radius:12px;"></div>
+        </div>
+      </div>
+      <div class="book-footer">
+        <div class="nav-btns"><button class="nav-btn" id="p2" onclick="ms(2,-1)" disabled>◀</button><button class="nav-btn" id="n2" onclick="ms(2,1)">▶</button></div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="slide-counter" id="cnt2">1 / 14</div>
+          <div class="slide-dots" id="dots2">
+            <div class="dot active" onclick="js(2,0)"></div><div class="dot" onclick="js(2,1)"></div>
+            <div class="dot" onclick="js(2,2)"></div><div class="dot" onclick="js(2,3)"></div>
+            <div class="dot" onclick="js(2,4)"></div><div class="dot" onclick="js(2,5)"></div>
+            <div class="dot" onclick="js(2,6)"></div><div class="dot" onclick="js(2,7)"></div>
+            <div class="dot" onclick="js(2,8)"></div><div class="dot" onclick="js(2,9)"></div>
+            <div class="dot" onclick="js(2,10)"></div><div class="dot" onclick="js(2,11)"></div>
+            <div class="dot" onclick="js(2,12)"></div><div class="dot" onclick="js(2,13)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="back-to-top" onclick="document.querySelector('.stripe-section').scrollIntoView({behavior:'smooth',block:'start'})">▲ TOPに戻る</button>
+
+  </div>
+
+  <div class="section-view" id="sect3">
+    <div class="book-card">
+      <div class="book-topbar"><span class="book-topbar-icon">🍿</span><span class="book-topbar-title">発送・お支払方法</span></div>
+      <div class="book-stage">
+        <button class="slide-nav-left" id="pl3" onclick="ms(3,-1)" disabled>◀</button>
+        <button class="slide-nav-right" id="nl3" onclick="ms(3,1)">▶</button>
+        <div style="width:100%">
+          <div class="slide active" id="s3-0"><img src="cash1.jpg" style="max-width:100%;border-radius:12px;"></div>
+          <div class="slide" id="s3-1"><img src="cash2.jpg" style="max-width:100%;border-radius:12px;"></div>
+        </div>
+      </div>
+      <div class="book-footer">
+        <div class="nav-btns"><button class="nav-btn" id="p3" onclick="ms(3,-1)" disabled>◀</button><button class="nav-btn" id="n3" onclick="ms(3,1)">▶</button></div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="slide-counter" id="cnt3">1 / 2</div>
+          <div class="slide-dots" id="dots3">
+            <div class="dot active" onclick="js(3,0)"></div>
+            <div class="dot" onclick="js(3,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="paypay-notice" style="margin-top:16px;max-width:600px;margin-left:auto;margin-right:auto;text-align:center;">
+      <img src="paypay.jpg" style="max-width:100%;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.12);">
+    </div>
+    <button class="back-to-top" onclick="document.querySelector('.stripe-section').scrollIntoView({behavior:'smooth',block:'start'})">▲ TOPに戻る</button>
+
+  </div>
+
+<div class="faq-section-view" id="faq-sect">
+  <div class="faq-box">
+    <div class="faq-box-topbar">
+      <span style="font-size:20px;">🌝</span>
+      <span style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:#5a3a2a;">よくあるご質問　Q&A</span>
+    </div>
+    <div class="faq-box-body">
+      <div class="faq-qa">
+        <div class="faq-qa-q">納期を早めることはできますか？</div>
+        <div class="faq-qa-a">原則として記載の納期でのお渡しとなります。1ヶ月を切るお渡しをご希望の場合は、お急ぎ料金が発生する場合や、タイミングによってはお受けできない場合がございます。</div>
+      </div>
+      <div class="faq-qa">
+        <div class="faq-qa-q">いくらになりますか？</div>
+        <div class="faq-qa-a">デザインや難易度によって価格が異なるため、一律のお値段をお伝えすることができません。<br>お見積もりをご希望の場合は、大まかなデザイン内容（例：イラスト何点、他おまかせ等）をお伝えいただければ、おおよその金額をご案内することが可能です。<br>オーダーシートにご記入いただくと、より正確にお伝えできます。<br>なお、お伝えした金額はあくまで目安となり、デザインシート作成後に最終的なデザイン内容によって価格が前後する可能性がございます。ご理解のほど、よろしくお願いいたします。</div>
+      </div>
+      <div class="faq-qa">
+        <div class="faq-qa-q">過去作品と同じデザインはできますか？</div>
+        <div class="faq-qa-a">当方がおまかせで承ったデザインであれば、お作りすることが可能です。</div>
+      </div>
+      <div class="faq-qa">
+        <div class="faq-qa-q">測定チップは購入した方がいいですか？</div>
+        <div class="faq-qa-a">初めて当店をご利用の方、またネイルチップのオーダー自体が初めての方は、原則として測定チップのご購入をお願いしております。<br>過去にセルフ測定のサイズに気になる点があり測定チップをお試しいただいた所、大きく異なるサイズになったという事例がございます。<br>また、異なる種類のチップをご希望の場合は、チップの種類が変わるとサイズも変わるため、改めて測定チップのご利用をお願いしております。</div>
+      </div>
+      <div class="faq-qa">
+        <div class="faq-qa-q">オーダーした作品画像はSNSに載せますか？</div>
+        <div class="faq-qa-a">お作りした作品は活動紹介としてSNS等に掲載させていただきます。<br>掲載不可のご要望は原則としてお受けし兼ねますので、予めご了承ください。</div>
+      </div>
+      <button class="back-to-top" style="margin:16px auto 0;" onclick="closeFaq()">✕ 閉じる</button>
+    </div>
+  </div>
+</div>
+
+<div class="request-section-view" id="request-sect">
+  <div class="request-box">
+    <div class="request-topbar">
+      <span style="font-size:20px;">🎈</span>
+      <span style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:#5a3a2a;">お願い事項</span>
+    </div>
+    <div class="request-body">
+      <div class="request-section">
+        <div class="request-section-title">● お問い合わせについて</div>
+        <div class="request-section-text">お問い合わせの際は、参考画像や大まかなご希望内容を添えていただけますと、よりスムーズにご案内することができます。<br>「いくらですか？」「作れますか？」など端的なご質問ですと、詳細をご確認させていただく必要があり、やり取りに時間がかかってしまう場合がございます。<br>ご協力よろしくお願いいたします。</div>
+      </div>
+      <div class="request-section">
+        <div class="request-section-title">● 添付いただく写真について</div>
+        <div class="request-section-text">参考写真はなるべく高画質のものをお送りください。画質が粗い場合や、デザインの一部が切れている場合は、再度お送りいただく場合がございます。<br>デザイン全体が把握できるよう、描いて欲しい部分が全て写っているものをお願いいたします。<br>写っていない部分がどうしてもある場合は、ご理解いただいた上で、ある程度想定した形で補うことが可能なこともございます。<br>また、おまかせ部分がある場合は、参考画像をできるだけ多くお送りください。</div>
+      </div>
+      <div class="request-section">
+        <div class="request-section-title">● 納期についてのご注意</div>
+        <div class="request-section-text">測定チップのご利用や、デザインシートが完成するまでの期間は、納期に含まれません。<br>納期はご入金確認後からの日数となります。予めご了承ください。<br>余裕を持った制作スケジュールを組むため、ご希望のお受け取り日をお伺いしております。</div>
+      </div>
+      <button class="back-to-top" style="margin:16px auto 0;" onclick="closeRequest()">✕ 閉じる</button>
+    </div>
+  </div>
+  <button class="back-to-top" onclick="document.querySelector('.stripe-section').scrollIntoView({behavior:'smooth',block:'start'})">▲ TOPに戻る</button>
+</div>
+
+</div>
+
+<div class="bottom-stripe"></div>
+
+<div class="insta-bottom">
+  <span class="insta-star">★</span><span class="insta-star">★</span><span class="insta-star">★</span>
+  <span class="insta-star">★</span><span class="insta-star">★</span><span class="insta-star">★</span>
+  <span class="insta-star">★</span><span class="insta-star">★</span><span class="insta-star">★</span>
+  <span class="insta-star">★</span><span class="insta-star">★</span><span class="insta-star">★</span>
+  <span class="insta-star">★</span>
+  <div class="insta-bottom-text">
+    オーダーシートにご記入の上<br>InstagramのDMにて受け付けております🎪<br><br>オーダー再開のお知らせは、インスタのストーリーにて告知します🌟
+  </div>
+  <a class="insta-dm-btn" href="https://www.instagram.com/hammy_nail.hami?igsh=YXMyZng1dXU4enJ6&utm_source=qr" target="_blank">
+    <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+    Instagramはコチラ
+  </a>
+</div>
+
+<script>
+(function(){
+  const r=document.getElementById('gr1');
+  const cs=['g1','g2','g3','g4'];
+  let h='';
+  for(let i=0;i<120;i++) h+='<span class="gf '+cs[i%4]+'"></span>';
+  r.innerHTML=h;
+})();
+let cur=0;
+function showSection(n){
+  for(let i=0;i<4;i++){
+    document.getElementById('sect'+i).classList.remove('active');
+    document.getElementById('stab'+i).classList.remove('active');
+  }
+  cur=n;
+  document.getElementById('sect'+n).classList.add('active');
+  document.getElementById('stab'+n).classList.add('active');
+  document.querySelector('#sect'+n).scrollIntoView({behavior:'smooth',block:'start'});
+}
+const ss=[0,0,0,0],sc=[4,3,14,2];
+function ms(s,d){
+  const c=ss[s],nx=c+d;
+  if(nx<0||nx>=sc[s]) return;
+  document.getElementById('s'+s+'-'+c).classList.remove('active');
+  document.getElementById('s'+s+'-'+nx).classList.add('active');
+  ss[s]=nx; ui(s);
+}
+function js(s,n){
+  if(n===ss[s]) return;
+  document.getElementById('s'+s+'-'+ss[s]).classList.remove('active');
+  document.getElementById('s'+s+'-'+n).classList.add('active');
+  ss[s]=n; ui(s);
+}
+function ui(s){
+  const c=ss[s];
+  document.getElementById('cnt'+s).textContent=(c+1)+' / '+sc[s];
+  document.querySelectorAll('#dots'+s+' .dot').forEach((d,i)=>d.classList.toggle('active',i===c));
+  document.getElementById('p'+s).disabled=c===0;
+  document.getElementById('n'+s).disabled=c===sc[s]-1;
+  document.getElementById('pl'+s).disabled=c===0;
+  if(s===1){ document.getElementById('save-notice').style.display=c===0?'none':'block'; }
+  document.getElementById('nl'+s).disabled=c===sc[s]-1;
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight') ms(cur,1);
+  if(e.key==='ArrowLeft') ms(cur,-1);
+});
+
+function showFaq() {
+  for(let i=0;i<4;i++){
+    document.getElementById('sect'+i).classList.remove('active');
+    document.getElementById('stab'+i).classList.remove('active');
+  }
+  document.getElementById('faq-sect').classList.add('active');
+  document.getElementById('faq-sect').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function closeFaq() {
+  document.getElementById('faq-sect').classList.remove('active');
+  document.querySelector('.stripe-section').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function showRequest() {
+  document.getElementById('request-sect').classList.add('active');
+  document.getElementById('request-sect').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function closeRequest() {
+  document.getElementById('request-sect').classList.remove('active');
+  document.querySelector('.stripe-section').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
